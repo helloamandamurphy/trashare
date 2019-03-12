@@ -9,8 +9,4 @@ class ApplicationController < Sinatra::Base
     set :session_secret, "trashare"
   end
 
-  get '/' do
-    "Hello World!"
-  end
-
 end
