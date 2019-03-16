@@ -14,7 +14,7 @@ To use this app, clone this repository, run `rake db:migrate` and then `shotgun`
 Bug reports and pull requests are welcome on GitHub at https://github.com/helloamandamurphy/trashare. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 ## Author
-The design concept for Trashare was created by graduate students of Indiana University's Human-Computer Interaction and Design program. Students include: Ries Murphy [add other student names.]
+The design concept for Trashare was created by graduate students of Indiana University's Human-Computer Interaction and Design program. Students include: Jinling Hu, Lance Lang, Ries Murphy, Aswati Panicker.
 
 Amanda Murphy was the singular developer of the Trashare web application. This is her first time creating a web application from scratch as part of her full stack web development studies through Flatiron School in New York.
 
