@@ -12,6 +12,9 @@ class PostsController < ApplicationController
     end
   end
 
+  #post '/posts' do
+  #end
+
   get '/posts/:id/edit' do
     if !logged_in?
       redirect "/login"
