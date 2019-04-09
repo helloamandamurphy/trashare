@@ -10,15 +10,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_08_172830) do
+ActiveRecord::Schema.define(version: 2019_04_09_033753) do
 
-  create_table "posts", force: :cascade do |t|
+  create_table "creations", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.string "image_url"
+    t.text "directions"
+    t.integer "user_id"
+    t.text "tags"
+  end
+
+  create_table "donations", force: :cascade do |t|
     t.string "title"
     t.text "description"
     t.string "image_url"
     t.text "address"
     t.integer "user_id"
-    t.string "tags"
+    t.text "tags"
+    t.datetime "post_time"
+  end
+
+  create_table "requests", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.integer "user_id"
+    t.text "tags"
+    t.datetime "post_time"
   end
 
   create_table "users", force: :cascade do |t|
@@ -27,6 +45,7 @@ ActiveRecord::Schema.define(version: 2019_04_08_172830) do
     t.string "username"
     t.string "first_name"
     t.string "last_name"
+    t.string "user_image"
   end
 
 end

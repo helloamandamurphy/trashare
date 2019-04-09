@@ -1,12 +1,13 @@
-class CreatePosts < ActiveRecord::Migration[5.2]
+class CreateDonations < ActiveRecord::Migration[5.2]
   def change
-    create_table :posts do |t|
+    create_table :donations do |t|
       t.string :title
       t.text :description
       t.string :image_url
       t.text :address
       t.integer :user_id
-      t.string :tags
+      t.text :tags
+      t.datetime :post_time
     end
   end
 end
