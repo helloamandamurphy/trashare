@@ -11,26 +11,11 @@ If not, fallbacks will be broken in your app by I18n 1.1.x.
 For more info see:
 https://github.com/svenfuchs/i18n/releases/tag/v1.1.0
 
-class CreateUsers < ActiveRecord::Migration[5.2]
-  def change
-    create_table :users do |t|
-      t.string :email
-    end
-  end
-end
+MODELS:
+-User (Sign Up, Login)
+-Request (CRUD)
+-Give (CRUD)
 
-class AddPasswordsToUsers < ActiveRecord::Migration[5.2]
-  def change
-    add_column :users, :password_digest, :string
-  end
-end
-
-class CreatePosts < ActiveRecord::Migration[5.2]
-  def change
-    create_table :posts do |t|
-      t.string :title
-      t.text :content
-      t.integer :user_id
-    end
-  end
-end
+Optional Additional Models:
+-Make (CRUD) I don't think this is necessary for now.
+-Tags (optional fifth model)

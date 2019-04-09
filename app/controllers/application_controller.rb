@@ -13,6 +13,10 @@ class ApplicationController < Sinatra::Base
     erb :index
   end
 
+  get '/marketplace' do
+    erb :marketplace
+  end
+
   helpers do
 
     def logged_in?
