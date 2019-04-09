@@ -6,6 +6,8 @@ end
 
 use Rack::MethodOverride
 use SessionsController
-use PostsController
+use DonationController
+use RequestController
+use CreationController
 use UsersController
 run ApplicationController
