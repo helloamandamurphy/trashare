@@ -13,4 +13,5 @@ class UsersController < ApplicationController
       erb :"users/new.html"
     end
   end
+
 end

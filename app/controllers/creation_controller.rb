@@ -8,12 +8,16 @@ class CreationController < ApplicationController
     #end
   end
 
-  #post '/creations' do
-    #@creation = Creation.new(:key params(key))
-  #end
-
   get '/creations' do
     erb :"create/index"
+  end
+
+  post '/creations' do
+    @creation = Creation.new(:title params(title), :description params(description), :image_url params(image_url), :directions params(directions), :tags params(tags))
+    @creation.user_id = current_user.id
+    @creation.save
+
+    redirect "/creations"
   end
 
   get '/creations/:id' do

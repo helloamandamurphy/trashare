@@ -17,6 +17,20 @@ class ApplicationController < Sinatra::Base
     erb :marketplace
   end
 
+  get '/login' do
+    erb :"sessions/login.html"
+  end
+
+  post '/sessions' do
+    login(params[:email], params[:password])
+    redirect '/posts'
+  end
+
+  get '/logout' do
+    logout!
+    redirect '/posts'
+  end
+
   helpers do
 
     def logged_in?
