@@ -1,5 +1,13 @@
 class DonationController < ApplicationController
 
+  get '/donations' do
+    @donations = Donation.all
+    @users = User.all
+    binding.pry
+
+    erb :"donate/index"
+  end
+
   get '/donations/new' do
     #if !logged_in?
       #redirect "/login"
@@ -8,15 +16,17 @@ class DonationController < ApplicationController
     #end
   end
 
-  #post '/donations' do
-    #@donation = Donation.new(:key params(key))
-  #end
+  post '/donations' do
+    @donation = Donation.new(title: params["title"], description: params["description"], image_url: params["image_url"], address: params["address"], tags: params["tags"])
+    @donation.user_id = session[:user_id]
+    @donation.post_time = Time.now
+    @donation.save
 
-  get '/donations' do
-    erb :"donate/index"
+    redirect "/donations/#{@donation.id}"
   end
 
   get '/donations/:id' do
+    @donation = Donation.find_by(id: params[:id])
     #if !logged_in?
       #redirect "/login"
     #else

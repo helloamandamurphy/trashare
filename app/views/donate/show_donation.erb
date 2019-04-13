@@ -1,1 +1,8 @@
-<h3>This is an individual donation</h3>
+<p>This should be an individual donation<p>
+<h2><%= @donation.title %></h2>
+<p><%= @donation.description %></p>
+<img src="<%= @donation.image_url %>" alt="<%= @donation.title %>">
+<h3>Address</h3>
+<p><%= @donation.address %></p>
+<h3>Tags</h3>
+<p><%= @donation.tags %></p>

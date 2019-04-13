@@ -1,1 +1,18 @@
 <h3>This is a list  of all donations</h3>
+<% @donations.each do |donation| %>
+<div class="donation_info">
+  <h2><a href="/donations/<%= donation.id %>"><%= donation.title %></a></h2>
+  <p><%= donation.description %></p>
+  <img src="<%= donation.image_url %>" alt="<%= donation.title %>" height = 200>
+  <h3>Address</h3>
+  <p><%= donation.address %></p>
+  <h3>Tags</h3>
+  <p><%= donation.tags %></p>
+</div>
+<div class="donor_info">
+  <% user = @users.find_by(id: donation.user_id) %>
+  <p class="post_time">Posted by <%= user.first_name %> at <%= donation.post_time %></p>
+  <img src="<%= user.user_image%>" alt="<%= user.username %>" height = 200><br>
+  <a href = "mailto: <%= user.email %>">Contact</a>
+</div>
+<% end %>

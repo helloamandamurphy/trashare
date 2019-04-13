@@ -45,6 +45,7 @@ class ApplicationController < Sinatra::Base
       if !logged_in?
         redirect '/login'
         #add flash message "Please login to access that feature."
+      end
     end
 
     def login(email, password)
