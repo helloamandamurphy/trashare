@@ -23,12 +23,12 @@ class ApplicationController < Sinatra::Base
 
   post '/sessions' do
     login(params[:email], params[:password])
-    redirect '/posts'
+    redirect '/marketplace'
   end
 
   get '/logout' do
     logout!
-    redirect '/posts'
+    redirect '/marketplace'
   end
 
   helpers do
@@ -38,13 +38,19 @@ class ApplicationController < Sinatra::Base
     end
 
     def current_user
-      @current_user ||= User.find_by(:id => session[:id]) if session[:id]
+      @current_user ||= User.find_by(:id => session[:user_id]) if session[:user_id]
+    end
+
+    def redirect_if_not_logged_in
+      if !logged_in?
+        redirect '/login'
+        #add flash message "Please login to access that feature."
     end
 
     def login(email, password)
-      user = User.find_by(id: params[:id])
+      user = User.find_by(email: params[:email])
       if user && user.authenticate(password)
-        session[:id] = user.id
+        session[:user_id] = user.id
       else
         redirect '/login'
       end
