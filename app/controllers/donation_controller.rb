@@ -8,11 +8,8 @@ class DonationController < ApplicationController
   end
 
   get '/donations/new' do
-    #if !logged_in?
-      #redirect "/login"
-    #else
-      erb :"donate/new_donation"
-    #end
+    redirect_if_not_logged_in
+    erb :"donate/new_donation"
   end
 
   post '/donations' do
@@ -26,54 +23,39 @@ class DonationController < ApplicationController
 
   get '/donations/:id' do
     @donation = Donation.find_by(id: params[:id])
-    #if !logged_in?
-      #redirect "/login"
-    #else
-      #if @donation = current_user.donation.find_by(params[:id])
-        erb :"donate/show_donation"
-      #else
-        #redirect '/donations'
-      #end
-    #end
+    erb :"donate/show_donation"
   end
 
   get '/donations/:id/edit' do
-    #if !logged_in?
-      #redirect "/login"
-    #else
-      #if @donation = current_user.donation.find_by(params[:id])
-      @donation = Donation.find_by(id: params[:id])
-        erb :"donate/edit_donation"
-      #else
-        #redirect '/donations'
-      #end
-    #end
+    redirect_if_not_logged_in
+    if @donation = current_user.donations.find_by(params[:id])
+      erb :"donate/edit_donation"
+    else
+      redirect '/donations'
+    end
   end
 
   patch '/donations/:id' do
     @donation = Donation.find_by(id: params[:id])
-    #if logged_in? && @donation.user_id == current_user.id
-      #if params[:content].empty?
-        #redirect "/donations/#{@donation.id}/edit"
-      #else
+    if logged_in? && @donation.user_id == current_user.id
+      if params[:title].empty? || params[:description].empty? || params[:image_url].empty? || params[:address].empty? || params[:tags].empty?
+        redirect "/donations/#{@donation.id}/edit"
+      else
         @donation.update(title: params["title"], description: params["description"], image_url: params["image_url"], address: params["address"], tags: params["tags"])
-        redirect to "/donations/#{@donation.id}"
-      #end
-    #else
-      #erb :login
-    #end
+        redirect "/donations/#{@donation.id}"
+      end
+    end
   end
 
   delete '/donations/:id/delete' do
-    #if logged_in?
+    redirect_if_not_logged_in
     @donation = Donation.find_by(id: params[:id])
-      #if @donation && @donation.user_id == current_user.id
-        @donation.delete
-      #end
-      redirect to '/donations'
-    #else
-      #redirect to '/login'
-    #end
+    if @donation && @donation.user_id == current_user.id
+      @donation.delete
+      redirect "/donations"
+    else
+      redirect "/donations/#{@donation.id}"
+    end
   end
 
 end

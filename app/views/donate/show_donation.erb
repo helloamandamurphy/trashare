@@ -6,8 +6,10 @@
 <h3>Tags</h3>
 <p><%= @donation.tags %></p>
 
-<a href="/donations/<%=@donation.id%>/edit">Edit Donation</a>
-<form method="post" action="/donations/<%=@donation.id%>/delete">
-  <input id="hidden" type="hidden" name="_method" value="DELETE">
-  <input type="submit" name="submit" id="submit" value="Delete Donation">
-</form>
+<% if logged_in? && @donation.user_id == current_user.id %>
+  <a href="/donations/<%=@donation.id%>/edit">Edit Donation</a>
+  <form method="post" action="/donations/<%=@donation.id%>/delete">
+    <input id="hidden" type="hidden" name="_method" value="DELETE">
+    <input type="submit" name="submit" id="submit" value="Delete Donation">
+  </form>
+<% end %>
