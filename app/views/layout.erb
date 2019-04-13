@@ -15,8 +15,15 @@
       <h1><a href="/">Trashare</a></h1>
 
         <nav>
-          <a href= "/login">Log In</a>
-          <a href= "/signup">Sign Up</a>
+          <% if !logged_in? %>
+            <a href= "/login">Log In</a>
+            <a href= "/signup">Sign Up</a>
+          <% else %>
+            <a href= "/donations/new">Give</a>
+            <a href= "/creations">Make</a>
+            <a href= "/request/new">Request</a>
+            <a href= "/marketplace">Marketplace</a>
+          <% end %>
         </nav>
       </header>
 

@@ -1,4 +1,5 @@
 require './config/environment'
+require 'rack-flash'
 
 class ApplicationController < Sinatra::Base
 
@@ -7,6 +8,7 @@ class ApplicationController < Sinatra::Base
     set :views, 'app/views'
     enable :sessions
     set :session_secret, "trashare"
+    use Rack::Flash
   end
 
   get '/' do
@@ -14,11 +16,16 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/marketplace' do
+    @recent_donations = Donation.last(3)
     erb :marketplace
   end
 
   get '/login' do
-    erb :"login.html"
+    if !logged_in?
+      erb :"login.html"
+    else
+      redirect "/marketplace"
+    end
   end
 
   post '/sessions' do
@@ -27,8 +34,13 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/logout' do
-    session.clear
-    redirect '/marketplace'
+    if logged_in?
+      session.clear
+      redirect '/marketplace'
+    else
+      flash[:message] = "You are not currently logged in."
+      redirect '/login'
+    end
   end
 
   helpers do
@@ -43,8 +55,8 @@ class ApplicationController < Sinatra::Base
 
     def redirect_if_not_logged_in
       if !logged_in?
+        flash[:message] = "Please login to access that feature."
         redirect '/login'
-        #add flash message "Please login to access that feature."
       end
     end
 
@@ -57,5 +69,4 @@ class ApplicationController < Sinatra::Base
       end
     end
   end
-
 end
