@@ -1,4 +1,3 @@
-<p>This should be an individual donation<p>
 <h2><%= @donation.title %></h2>
 <p><%= @donation.description %></p>
 <img src="<%= @donation.image_url %>" alt="<%= @donation.title %>">
@@ -6,3 +5,9 @@
 <p><%= @donation.address %></p>
 <h3>Tags</h3>
 <p><%= @donation.tags %></p>
+
+<a href="/donations/<%=@donation.id%>/edit">Edit Donation</a>
+<form method="post" action="/donations/<%=@donation.id%>/delete">
+  <input id="hidden" type="hidden" name="_method" value="DELETE">
+  <input type="submit" name="submit" id="submit" value="Delete Donation">
+</form>

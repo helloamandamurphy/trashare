@@ -3,7 +3,6 @@ class DonationController < ApplicationController
   get '/donations' do
     @donations = Donation.all
     @users = User.all
-    binding.pry
 
     erb :"donate/index"
   end
@@ -43,10 +42,37 @@ class DonationController < ApplicationController
       #redirect "/login"
     #else
       #if @donation = current_user.donation.find_by(params[:id])
+      @donation = Donation.find_by(id: params[:id])
         erb :"donate/edit_donation"
       #else
         #redirect '/donations'
       #end
+    #end
+  end
+
+  patch '/donations/:id' do
+    @donation = Donation.find_by(id: params[:id])
+    #if logged_in? && @donation.user_id == current_user.id
+      #if params[:content].empty?
+        #redirect "/donations/#{@donation.id}/edit"
+      #else
+        @donation.update(title: params["title"], description: params["description"], image_url: params["image_url"], address: params["address"], tags: params["tags"])
+        redirect to "/donations/#{@donation.id}"
+      #end
+    #else
+      #erb :login
+    #end
+  end
+
+  delete '/donations/:id/delete' do
+    #if logged_in?
+    @donation = Donation.find_by(id: params[:id])
+      #if @donation && @donation.user_id == current_user.id
+        @donation.delete
+      #end
+      redirect to '/donations'
+    #else
+      #redirect to '/login'
     #end
   end
 
