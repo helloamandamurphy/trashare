@@ -18,30 +18,6 @@ MODELS:
 
 Optional Additional Models:
 -Make (CRUD) I don't think this is necessary for now.
--Tags (optional fifth model)
+-Tags (optional fifth model) Request/Donation/Creation has many and Tags have many posts
 
-class CreateDonations < ActiveRecord::Migration[5.2]
-  def change
-    create_table :donations do |t|
-      t.string :title
-      t.text :description
-      t.string :image_url
-      t.text :address
-      t.integer :user_id
-      t.string :tags
-      t.datetime :post_time
-    end
-  end
-end
-
-class CreateUsers < ActiveRecord::Migration[5.2]
-  def change
-    create_table :users do |t|
-      t.string :email
-      t.string :password_digest
-      t.string :username
-      t.string :first_name
-      t.string :last_name
-    end
-  end
-end
+Need to make sure the form fields aren't empty for all post/update actions.

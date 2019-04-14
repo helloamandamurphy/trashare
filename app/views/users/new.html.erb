@@ -1,25 +1,31 @@
 <h2>Sign Up</h2>
 
-<%= "You must complete all fields to create an account." if @user && @user.errors.any? %>
+<% if @user && @user.errors.any? %>
+  <% @user.errors.messages.each do |attr, message| %>
+    <ul>
+      <li><%= message %></li>
+    </ul>
+  <% end %>
+<% end %>
 
 <form action="/users" method="POST">
   <label for="first_name">First Name:</label>
-  <input type="text" name="first_name" id="first_name" /><br>
+  <input type="text" name="first_name" id="first_name" required><br>
 
   <label for="last_name">Last Name:</label>
-  <input type="text" name="last_name" id="last_name" /><br>
+  <input type="text" name="last_name" id="last_name" required><br>
 
   <label for="user_image">Profile Image URL:</label>
-  <input type="text" name="user_image" id="user_image" /><br>
+  <input type="text" name="user_image" id="user_image" required><br>
 
   <label for="email">Email:</label>
-  <input type="text" name="email" id="email" /><br>
+  <input type="text" name="email" id="email" required><br>
 
   <label for="username">Username:</label>
-  <input type="text" name="username" id="username" /><br>
+  <input type="text" name="username" id="username" required><br>
 
   <label for="password">Password:</label>
-  <input type="password" name="password" id="password" /><br>
+  <input type="password" name="password" id="password" required><br>
 
   <input type="submit" />
 </form>
