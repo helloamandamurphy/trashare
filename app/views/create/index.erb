@@ -1,1 +1,12 @@
-<h3>View all crafts</h3>
+<h3>All Creations</h3>
+<% @creations.each do |creation| %>
+<div class="creation_info">
+  <h2><a href="/creations/<%= creation.id %>"><%= creation.title %></a></h2>
+  <p><%= creation.description %></p>
+  <img src="<%= creation.image_url %>" alt="<%= creation.title %>" height = 200>
+  <h3>Address</h3>
+  <p><%= creation.address %></p>
+  <h3>Tags</h3>
+  <p><%= creation.tags %></p>
+</div>
+<% end %>

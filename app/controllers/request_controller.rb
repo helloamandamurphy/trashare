@@ -14,8 +14,9 @@ class RequestController < ApplicationController
 
   post '/requests' do
     @request = Request.new(title: params["title"], description: params["description"], tags: params["tags"])
-    @request.user_id = session[:user_id]
+    #@request.user_id = @current_user.id
     @request.post_time = Time.now
+    #binding.pry --This is saying there is no current_user or session
     @request.save
 
     redirect "/requests/#{@request.id}"
