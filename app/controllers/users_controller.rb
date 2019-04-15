@@ -4,13 +4,7 @@ class UsersController < ApplicationController
   end
 
   post '/users' do
-    @user = User.new
-    @user.email = params["email"]
-    @user.password = params["password"]
-    @user.username = params["username"]
-    @user.first_name = params["first_name"]
-    @user.last_name = params["last_name"]
-    @user.user_image = params["user_image"]
+    @user = User.new(email: params["email"], password: params["password"], username: params["username"], first_name: params["first_name"], last_name: params["last_name"], user_image: params["user_image"])
     if @user.save
       redirect "/login"
     else
