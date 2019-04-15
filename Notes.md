@@ -21,3 +21,9 @@ Optional Additional Models:
 -Tags (optional fifth model) Request/Donation/Creation has many and Tags have many posts
 
 Need to make sure the form fields aren't empty for all post/update actions.
+
+Concerns:
+-Marketplace: users instance variable loads all users...how would I load only the users needed?
+-Flash messages aren't currently working...why?
+-Time stamps...how do I change this from posted time to posted ___ time ago?
+-Signup error is currently showing as ["Text"]. How do I get rid of the [""]?

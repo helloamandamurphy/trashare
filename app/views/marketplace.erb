@@ -14,38 +14,26 @@
 </div>
 
 <div class="marketplace">
-  <!--Add three most recent market posts here-->
   <h2>What's on the Market</h2>
-  <div class="featured_1">
-  <!--Image 1-->
-  <h3>Market_Item Title</h3>
-  <p>Market_Item Description</p>
-  <!--Show Button-->
-  <p class="detail">Posted by User.first_name ___ ago</p>
-  <!--Map-->
-  <!--Market_info User photo-->
-  <!--Contact Button-->
-  </div>
 
-  <div class="featured_2">
-  <!--Image 2-->
-  <h3>Market_Item Title</h3>
-  <p>Market_Item Description</p>
-  <!--Show Button-->
-  <p class="detail">Posted by User.first_name ___ ago</p>
-  <!--Map-->
-  <!--Market_info User photo-->
-  <!--Contact Button-->
+  <div class="featured_donations">
+    <% @donations.each do |donation| %>
+    <div class="donation_info">
+      <h3><a href="/donations/<%= donation.id %>"><%= donation.title %></a></h3>
+      <p><%= donation.description %></p>
+      <img src="<%= donation.image_url %>" alt="<%= donation.title %>" height = 200>
+      <h4>Address</h4>
+      <p><%= donation.address %></p>
+      <h4>Tags</h4>
+      <p><%= donation.tags %></p>
+    </div>
+    <div class="donor_info">
+      <% user = @users.find_by(id: donation.user_id) %>
+      <p class="post_time">Posted by <%= user.first_name %> at <%= donation.post_time %></p>
+      <img src="<%= user.user_image%>" alt="<%= user.username %>" height = 200><br>
+      <a href ="mailto:<%=user.email%>">Contact</a>
+    </div>
+    <% end %>
   </div>
-
-  <div class="featured_3">
-  <!--Image 1-->
-  <h3>Market_Item Title</h3>
-  <p>Market_Item Description</p>
-  <!--Show Button-->
-  <p class="detail">Posted by User.first_name ___ ago</p>
-  <!--Map-->
-  <!--Market_info User photo-->
-  <!--Contact Button-->
-  </div>
+  <a href= "/donations">View all donations.</a>
 </div>
