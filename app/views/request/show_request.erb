@@ -1,1 +1,12 @@
-<h3>This is an individual request.</h3>
+<h2><%= @request.title %></h2>
+<p><%= @request.description %></p>
+<h3>Tags</h3>
+<p><%= @request.tags %></p>
+
+<% if logged_in? && @request.user_id == current_user.id %>
+  <a href="/requests/<%=@request.id%>/edit">Edit Request</a>
+  <form method="post" action="/requests/<%=@request.id%>/delete">
+    <input id="hidden" type="hidden" name="_method" value="DELETE">
+    <input type="submit" name="submit" id="submit" value="Delete Request">
+  </form>
+<% end %>

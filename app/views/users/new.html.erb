@@ -3,7 +3,7 @@
 <% if @user && @user.errors.any? %>
   <% @user.errors.messages.each do |attr, message| %>
     <ul>
-      <li><%= message %></li>
+      <li><%= message[0].delete_prefix('"').delete_suffix('"') %></li>
     </ul>
   <% end %>
 <% end %>
@@ -27,5 +27,5 @@
   <label for="password">Password:</label>
   <input type="password" name="password" id="password" required><br>
 
-  <input type="submit" />
+  <input type="submit">
 </form>
