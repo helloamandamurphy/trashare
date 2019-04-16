@@ -12,18 +12,15 @@ For more info see:
 https://github.com/svenfuchs/i18n/releases/tag/v1.1.0
 
 MODELS:
--User (Sign Up, Login)
--Request (CRUD)
--Give (CRUD)
+[x]User (Sign Up, Login)
+[]Request (CRUD) Currently not working--can't figure out debugging on my own for now, will ask for help this week.
+[x]Give (CRUD)
 
 Optional Additional Models:
--Make (CRUD) I don't think this is necessary for now.
+[x]Create (CRUD) I don't think this is necessary for now.
 -Tags (optional fifth model) Request/Donation/Creation has many and Tags have many posts
-
-Need to make sure the form fields aren't empty for all post/update actions.
 
 Concerns:
 -Marketplace: users instance variable loads all users...how would I load only the users needed?
 -Flash messages aren't currently working...why?
 -Time stamps...how do I change this from posted time to posted ___ time ago?
--Signup error is currently showing as ["Text"]. How do I get rid of the [""]?
