@@ -2,9 +2,11 @@
 
 <% if @user && @user.errors.any? %>
   <% @user.errors.messages.each do |attr, message| %>
+  <% message.each do |error| %>
     <ul>
-      <li><%= message[0].delete_prefix('"').delete_suffix('"') %></li>
+      <li><%= error %></li>
     </ul>
+    <% end %>
   <% end %>
 <% end %>
 
