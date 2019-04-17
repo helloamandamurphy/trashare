@@ -1,7 +1,7 @@
 class DonationController < ApplicationController
 
   get '/donations' do
-    @donations = Donation.all
+    @donations = Donation.all.reverse
     @users = User.all
 
     erb :"donate/index"

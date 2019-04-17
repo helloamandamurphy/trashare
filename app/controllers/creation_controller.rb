@@ -56,5 +56,4 @@ class CreationController < ApplicationController
       redirect "/creations/#{@creation.id}"
     end
   end
-
 end

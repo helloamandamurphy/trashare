@@ -1,3 +1,4 @@
+#Ignore this controller for my project. I have not been able to debug it, and have worked with Jennifer, but neither of us can figure out what's going on.
 class RequestController < ApplicationController
 
   get '/requests' do
