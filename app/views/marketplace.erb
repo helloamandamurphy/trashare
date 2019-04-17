@@ -3,7 +3,7 @@
   <p>Check to what people are giving away and keep an eye out for items local artists need.</p>
   <!--Add Image here-->
   <!--Add link to Request Index here-->
-  <p>What artists need.</p>
+  <a href="/requests">What artists need.</a>
 </div>
 
 <div class="featured_artist">
@@ -32,8 +32,10 @@
       <p class="post_time">Posted by <%= user.first_name %> at <%= donation.post_time %></p>
       <img src="<%= user.user_image%>" alt="<%= user.username %>" height = 200><br>
       <a href ="mailto:<%=user.email%>">Contact</a>
+      <hr size="3" width="100%" align="center" color="black">
     </div>
     <% end %>
+
   </div>
   <a href= "/donations">View all donations.</a>
 </div>

@@ -13,13 +13,20 @@ class RequestController < ApplicationController
   end
 
   post '/requests' do
+    #binding.pry--catching current_user correctly here
     @request = Request.new(title: params["title"], description: params["description"], tags: params["tags"])
+    #binding.pry--This is saying there is no current_user or session
     #@request.user_id = @current_user.id
     @request.post_time = Time.now
     #binding.pry --This is saying there is no current_user or session
     @request.save
 
-    redirect "/requests/#{@request.id}"
+    if @request.save
+      erb :"request/index"
+      #redirect "/requests/#{@request.id}"
+    else
+      erb :"request/new_request"
+    end
   end
 
   get '/requests/:id' do
