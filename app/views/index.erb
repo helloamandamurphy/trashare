@@ -1,4 +1,8 @@
-<!--Featured Make Link-->
+<div class="featured_creation">
+  <h3><a href="/creations/<%= @creation.id %>"><%= @creation.title %></a></h3>
+  <p><%= @creation.description %></p>
+  <img src="<%= @creation.image_url %>" alt="<%= @creation.title %>" height = 200>
+</div>
 <div class="navigation">
   <p>Creating beautiful things by connecting local artists & makers to non-recyclable waste material</p>
   <!--Make Button-->

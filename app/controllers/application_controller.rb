@@ -12,6 +12,7 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/' do
+    @creation = Creation.last
     erb :index
   end
 
