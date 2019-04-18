@@ -6,7 +6,7 @@ end
 
 use Rack::MethodOverride
 use DonationController
-use RequestController
+use SupplyController
 use CreationController
 use UsersController
 run ApplicationController

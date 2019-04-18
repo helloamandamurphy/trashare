@@ -4,6 +4,6 @@ class User < ActiveRecord::Base
   validates :username, uniqueness: { case_sensitive: false, message: "This username is unavailable."}
 
   has_many :donations
-  has_many :requests
+  has_many :supplies
   has_many :creations
 end

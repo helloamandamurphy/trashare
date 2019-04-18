@@ -1,0 +1,10 @@
+<h2>All Supply Requests</h2>
+<% @supplies.each do |supply| %>
+  <div class="supply_info">
+    <h3><a href="/supplies/<%=supply.id%>"><%= supply.title %></a></h3>
+    <p><%= supply.description %></p>
+    <h3>Tags</h3>
+    <p><%= supply.tags %></p>
+    <hr size="3" width="100%" align="center" color="black">
+  </div>
+<% end %>

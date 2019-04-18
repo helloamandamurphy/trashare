@@ -1,12 +1,13 @@
-<h3>All Donations</h3>
+<h2>All Donations</h2>
 <% @donations.each do |donation| %>
-<div class="donation_info">
-  <h2><a href="/donations/<%= donation.id %>"><%= donation.title %></a></h2>
-  <p><%= donation.description %></p>
-  <img src="<%= donation.image_url %>" alt="<%= donation.title %>" height = 200>
-  <h3>Address</h3>
-  <p><%= donation.address %></p>
-  <h3>Tags</h3>
-  <p><%= donation.tags %></p>
-</div>
+  <div class="donation_info">
+    <h3><a href="/donations/<%= donation.id %>"><%= donation.title %></a></h3>
+    <p><%= donation.description %></p>
+    <img src="<%= donation.image_url %>" alt="<%= donation.title %>" height = 200>
+    <h3>Address</h3>
+    <p><%= donation.address %></p>
+    <h3>Tags</h3>
+    <p><%= donation.tags %></p>
+    <hr size="3" width="100%" align="center" color="black">
+  </div>
 <% end %>

@@ -1,0 +1,15 @@
+<h2>Edit Your Supply Request</h2>
+<form action="/supplies/<%= @supply.id %>" method="POST">
+  <input id="hidden" type="hidden" name="_method" value="PATCH">
+
+  <label for="title">Title:</label>
+  <input type="text" name="title" id="title" value="<%= @supply.title %>"><br>
+
+  <label for="description">Description:</label>
+  <input type="text" name="description" id="description" value="<%= @supply.description %>"><br>
+
+  <label for="tags">Tags:</label>
+  <input type="text" name="tags" id="tags" value="<%= @supply.tags %>"><br>
+
+  <input type="submit" name="submit" id="submit" value="Edit Supply Request">
+</form>
