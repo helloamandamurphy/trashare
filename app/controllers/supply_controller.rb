@@ -2,7 +2,6 @@ class SupplyController < ApplicationController
 
   get '/supplies' do
     @supplies = Supply.all
-    @users = User.all
 
     erb :"supply/index"
   end
