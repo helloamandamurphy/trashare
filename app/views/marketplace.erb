@@ -2,15 +2,15 @@
   <h2>Welcome to the Trashare Marketplace.</h2>
   <p>Check to what people are giving away and keep an eye out for items local artists need.</p>
   <!--Add Image here-->
-  <!--Add link to Request Index here-->
   <a href="/supplies">What artists need.</a>
 </div>
 
-<div class="featured_artist">
-  <!--Add most recent artist request here-->
-  <h2>Artist Name</h2>
-  <p>Hi! I could really use your help collecting the the following materials for my next project. It's goonna be epic!</p>
-  <!--Add show page link here-->
+<div class="featured_supply">
+  <h2><%= @supply.user.first_name %></h2>
+  <img src="<%= @supply.user.user_image %>" alt="<%= @supply.user.username %>" height = 200>
+  <p><%= @supply.description %></p>
+  <% @supply.tags %>
+  <a href ="/supplies/<%=@supply.id%>">Help <%= @supply.user.first_name %></a>
 </div>
 
 <div class="marketplace">
@@ -28,10 +28,9 @@
       <p><%= donation.tags %></p>
     </div>
     <div class="donor_info">
-      <% user = @users.find_by(id: donation.user_id) %>
-      <p class="post_time">Posted by <%= user.first_name %> at <%= donation.post_time %></p>
-      <img src="<%= user.user_image%>" alt="<%= user.username %>" height = 200><br>
-      <a href ="mailto:<%=user.email%>">Contact</a>
+      <p class="post_time">Posted by <%= donation.user.first_name %> at <%= donation.post_time %></p>
+      <img src="<%= donation.user.user_image%>" alt="<%= donation.user.username %>" height = 200><br>
+      <a href ="mailto:<%=donation.user.email%>">Contact</a>
       <hr size="3" width="100%" align="center" color="black">
     </div>
     <% end %>

@@ -14,7 +14,7 @@ class SupplyController < ApplicationController
 
   post '/supplies' do
     @supply = Supply.new(title: params["title"], description: params["description"], tags: params["tags"])
-    @supply.user_id = @current_user.id
+    @supply.user_id = current_user.id
     @supply.post_time = Time.now
     @supply.save
 

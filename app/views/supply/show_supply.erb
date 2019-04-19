@@ -3,10 +3,10 @@
 <h3>Tags</h3>
 <p><%= @supply.tags %></p>
 
-<!--< if logged_in? && @supply.user_id == current_user.id %>-->
+<% if logged_in? && @supply.user_id == current_user.id %>
   <a href="/supplies/<%=@supply.id%>/edit">Edit Supply Request</a>
   <form method="post" action="/supplies/<%=@supply.id%>/delete">
     <input id="hidden" type="hidden" name="_method" value="DELETE">
     <input type="submit" name="submit" id="submit" value="Delete Supply Request">
   </form>
-<!--< end %>-->
+<% end %>

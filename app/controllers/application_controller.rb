@@ -17,8 +17,9 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/marketplace' do
+    @supply = Supply.last
     @donations = Donation.last(3).reverse
-    @users = User.all
+
     erb :marketplace
   end
 
