@@ -32,8 +32,13 @@ class ApplicationController < Sinatra::Base
   end
 
   post '/sessions' do
-    login(params[:email], params[:password])
-    redirect '/marketplace'
+    user = User.find_by(email: params[:email])
+    if user && user.authenticate(params[:password])
+      session[:user_id] = user.id
+      redirect '/marketplace'
+    else
+      redirect '/login'
+    end
   end
 
   get '/logout' do
@@ -63,13 +68,9 @@ class ApplicationController < Sinatra::Base
       end
     end
 
-    def login(email, password)
-      user = User.find_by(email: params[:email])
-      if user && user.authenticate(password)
-        session[:user_id] = user.id
-        redirect '/marketplace'
-      else
-        redirect '/login'
+    def redirect_if_no_permissions(post)
+      if !post || post.user_id != session[:user_id]
+        redirect "/marketplace"
       end
     end
   end
