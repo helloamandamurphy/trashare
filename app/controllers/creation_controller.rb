@@ -12,14 +12,10 @@ class CreationController < ApplicationController
 
   post '/creations' do
     redirect_if_not_logged_in
-    if params[:title].empty? || params[:description].empty? || params[:image_url].empty? || params[:directions].empty? || params[:tags].empty?
-      redirect "creations/new"
-    else
-      @creation = Creation.new(title: params["title"], description: params["description"], image_url: params["image_url"], directions: params["directions"], tags: params["tags"])
-      @creation.user_id = session[:user_id]
-      @creation.save
-      redirect "/creations/#{@creation.id}"
-    end
+    @creation = Creation.new(params["creation"])
+    @creation.user_id = session[:user_id]
+    @creation.save
+    redirect "/creations/#{@creation.id}"
   end
 
   get '/creations/:id' do
@@ -37,12 +33,8 @@ class CreationController < ApplicationController
   patch '/creations/:id' do
     @creation = Creation.find_by(id: params[:id])
     redirect_if_no_permissions(@creation)
-    if params[:title].empty? || params[:description].empty? || params[:image_url].empty? || params[:directions].empty? || params[:tags].empty?
-      redirect "/creations/#{@creation.id}/edit"
-    else
-      @creation.update(title: params["title"], description: params["description"], image_url: params["image_url"], directions: params["directions"], tags: params["tags"])
-      redirect "/creations/#{@creation.id}"
-    end
+    @creation.update(params["creation"])
+    redirect "/creations/#{@creation.id}"
   end
 
   delete '/creations/:id/delete' do

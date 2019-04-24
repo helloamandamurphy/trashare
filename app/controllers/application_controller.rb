@@ -69,7 +69,7 @@ class ApplicationController < Sinatra::Base
     end
 
     def redirect_if_no_permissions(post)
-      if !post || post.user_id != session[:user_id]
+      if !post || post.user_id != current_user.id
         redirect "/marketplace"
       end
     end

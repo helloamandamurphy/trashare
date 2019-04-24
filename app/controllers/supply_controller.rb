@@ -2,7 +2,6 @@ class SupplyController < ApplicationController
 
   get '/supplies' do
     @supplies = Supply.all
-
     erb :"supply/index"
   end
 
@@ -13,15 +12,11 @@ class SupplyController < ApplicationController
 
   post '/supplies' do
     redirect_if_not_logged_in
-    if params[:title].empty? || params[:description].empty? || params[:tags].empty?
-      redirect "donations/new"
-    else
-      @supply = Supply.new(title: params["title"], description: params["description"], tags: params["tags"])
-      @supply.user_id = session[:user_id]
-      @supply.post_time = Time.now
-      @supply.save
-      redirect "/supplies/#{@supply.id}"
-    end
+    @supply = Supply.new(params["supply"])
+    @supply.user_id = session[:user_id]
+    @supply.post_time = Time.now
+    @supply.save
+    redirect "/supplies/#{@supply.id}"
   end
 
   get '/supplies/:id' do
@@ -39,12 +34,8 @@ class SupplyController < ApplicationController
   patch '/supplies/:id' do
     @supply = Supply.find_by(id: params[:id])
     redirect_if_no_permissions(@supply)
-    if params[:title].empty? || params[:description].empty? || params[:tags].empty?
-      redirect "/supplies/#{@supply.id}/edit"
-    else
-      @supply.update(title: params["title"], description: params["description"], tags: params["tags"])
-      redirect "/supplies/#{@supply.id}"
-    end
+    @supply.update(params["supply"])
+    redirect "/supplies/#{@supply.id}"
   end
 
   delete '/supplies/:id/delete' do
